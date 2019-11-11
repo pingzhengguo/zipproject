@@ -105,16 +105,16 @@ public class ZipServiceImpl implements ZipService {
             });
             apiDebugUrl = apiDebugUrl.substring(apiDebugUrl.lastIndexOf("/") + 1);
             Map<String, Object> dataMap = new HashMap<>(16);
-            dataMap.put("packageName", "com.hiynn.sdk");
+            dataMap.put("packageName", "com.pzg.sdk");
             dataMap.put("appName", appName);
             dataMap.put("apiDebugUrl", apiDebugUrl);
             dataMap.put("httpApiGeneratorList", httpApiGeneratorList);
             dataMap.put("httpsApiGeneratorList", httpsApiGeneratorList);
             //下载路径，写文件到服务器上，所有文件都写入完成后打包
             String commonPath = "SDK_" + appName + "_" + UUID.randomUUID().toString();
-            String codePath = writeServerPath + commonPath + "/com/hiynn/sdk";
-            String docPath = writeServerPath + commonPath + "/com/hiynn/doc";
-            String jarPath = writeServerPath + commonPath + "/com/hiynn/lib";
+            String codePath = writeServerPath + commonPath + "/com/pzg/sdk";
+            String docPath = writeServerPath + commonPath + "/com/pzg/doc";
+            String jarPath = writeServerPath + commonPath + "/com/pzg/lib";
             try {
                 if (!httpApiGeneratorList.isEmpty()) {
                     //生成http调用api

@@ -36,7 +36,7 @@ public class FileController {
 
     private String mode = "local";
 
-    private String folder = "/home/webapp/haiyun/uploadfile";
+    private String folder = "/home/webapp/pzg/uploadfile";
 
     private String host = "192.168.170.131";
 
