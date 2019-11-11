@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pzg.code.zipproject.mapper.ApiServiceMapper">
+
+
+    <!--
+        获取app下所有以授权的api,授权过期则不予显示
+    -->
+    <select id="getAllAuthApiByApp" resultType="com.pzg.code.zipproject.vo.ApiServiceDto">
+        SELECT cas.api_service_id,cas.api_group_id,cas.api_service_name,cas.type,cas.description,cas.protocol,cas.method,cas.request_path,cas.is_cached,cas.service_id,cas.param_json,cas.is_delete,cas.create_time,cas.create_by,cas.update_time,cas.update_by,app.app_name,casg.path_prefix,casg.group_name,caa.app_key,caa.app_secret
+        FROM cap_app app LEFT JOIN cap_api_authorize caa ON app.app_id = caa.app_id LEFT JOIN cap_api_service cas ON caa.api_service_id = cas.api_service_id
+        LEFT JOIN cap_api_service_group casg ON cas.api_group_id = casg.api_group_id WHERE app.is_delete='0' AND caa.is_delete='0' AND caa.is_valid = '1' AND (caa.end_time &gt;= now() OR caa.end_time IS NULL)
+        AND cas.is_delete='0' AND casg.is_delete='0' AND caa.authorize_env='online' AND app.app_id = #{appId}
+    </select>
+
+
+</mapper>

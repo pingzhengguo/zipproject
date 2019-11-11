@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pzg.code.zipproject.mapper.FileSaveMapper">
+    <resultMap id="BaseResultMap" type="com.pzg.code.zipproject.entity.FileSave">
+        <id column="TIME_STAMP_FILE_NAME" jdbcType="VARCHAR" property="timeStampFileName"/>
+        <result column="ORIGIN_FILE_NAME" jdbcType="VARCHAR" property="originFileName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    TIME_STAMP_FILE_NAME, ORIGIN_FILE_NAME
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from FILE_SAVE
+        where TIME_STAMP_FILE_NAME = #{timeStampFileName,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.pzg.code.zipproject.entity.FileSave">
+    insert into FILE_SAVE (TIME_STAMP_FILE_NAME, ORIGIN_FILE_NAME
+      )
+    values (#{timeStampFileName,jdbcType=VARCHAR}, #{originFileName,jdbcType=VARCHAR}
+      )
+  </insert>
+</mapper>
